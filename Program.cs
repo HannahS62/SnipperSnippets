@@ -23,6 +23,8 @@ app.MapGet("/snippets", () =>
     return Results.Ok(snippets) ;
 });
 
+//Test in postman: GET http://localhost:5280/snippets
+
 //GET with id
 app.MapGet("/snippets/{id}", (int id) =>
 {
@@ -30,6 +32,7 @@ app.MapGet("/snippets/{id}", (int id) =>
     return snippet != null ? Results.Ok(snippet) : Results.NotFound($"Snippet with ID {id} not found.");
 });
 
+//Test in postman: GET http://localhost:5280/snippets/id
 
 //POST
 app.MapPost("/snippets", (Snippet snippet) =>
@@ -44,5 +47,12 @@ app.MapPost("/snippets", (Snippet snippet) =>
 
     return Results.Created($"/snippets/{snippet.Id}", snippet);
 });
+
+
+//Test in postman: POST http://localhost:5280/snippets select body 
+// {
+//     "language": "C#",
+//     "code": "Console.WriteLine(\"My name is Hannah\");"
+// }
 
 app.Run();
